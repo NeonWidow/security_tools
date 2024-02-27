@@ -1,0 +1,36 @@
+SetExecutionPolicy.bat
+
+Description:
+
+This Batch script facilitates the modification of the PowerShell Execution Policy, a security feature that determines the conditions under which PowerShell scripts can be run. The script is designed to be executed in situations where the current Execution Policy restricts the running of PowerShell scripts, providing a convenient way to adjust the policy without requiring changes to the system-wide policy.
+
+Usage:
+
+    Run as Administrator: Ensure that the script is executed with administrative privileges (Run as Administrator).
+
+    Execution Policy Modification: The script utilizes the PowerShell.exe executable to run a one-liner PowerShell command. It sets the Execution Policy for the current user to RemoteSigned without needing to change the system-wide Execution Policy.
+
+This Batch script facilitates the modification of the PowerShell Execution Policy, a security feature that determines the conditions under which PowerShell scripts can be run. The script is designed to be executed in situations where the current Execution Policy restricts the running of PowerShell scripts, providing a convenient way to adjust the policy without requiring changes to the system-wide policy.
+
+Script Content:
+
+batch
+
+@echo off
+PowerShell.exe -NoProfile -ExecutionPolicy Bypass -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force"
+
+Explanation:
+
+    @echo off: Suppresses displaying commands in the console for a cleaner output.
+    PowerShell.exe: Invokes the PowerShell executable.
+    -NoProfile: Launches PowerShell without loading the user's PowerShell profile.
+    -ExecutionPolicy Bypass: Allows running the PowerShell command even if the execution policy is restrictive.
+    -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force": The PowerShell command that sets the Execution Policy for the current user to RemoteSigned with the -Force parameter for automatic confirmation.
+
+Note:
+
+    Ensure you have the necessary permissions to modify the Execution Policy.
+    Understand the security implications of changing the Execution Policy and use it judiciously.
+
+Disclaimer:
+This script is provided for educational purposes and should be used responsibly. Modifying the Execution Policy can impact the security of the system.
